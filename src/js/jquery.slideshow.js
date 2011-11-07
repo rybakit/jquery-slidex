@@ -11,24 +11,27 @@
         self.currentIndex = 0;
 
         $(self.slides[self.currentIndex]).css('z-index', 2);
+        //$.slideshow.ext.navigation(self);
 
-        self.show = function() {
+        self.next = function() {
             if (isShowing) {
                 return false;
             }
             isShowing = true;
 
-            var current = $(self.slides[self.currentIndex]),
-                nextIndex = self.currentIndex == self.slides.length - 1 ? 0 : self.currentIndex + 1;
-                next = $(self.slides[nextIndex]);
+            var data = {
+                nextIndex: self.currentIndex == self.slides.length - 1 ? 0 : self.currentIndex + 1
+            };
 
-            self.change(current, next, function() {
-                self.currentIndex = nextIndex;
+            $(self).trigger('beforeNext', [data]);
+            self.transform($(self.slides[self.currentIndex]), $(self.slides[data.nextIndex]), function() {
+                self.currentIndex = data.nextIndex;
+                $(self).trigger('afterNext');
                 isShowing = false;
             });
         };
 
-        self.change = function(from, to, callback) {
+        self.transform = function(from, to, callback) {
             to.css('z-index', 1);
             from.fadeOut(self.config.speed, function() {
                 to.css('z-index', 2);
@@ -38,9 +41,8 @@
         };
 
         self.start = function() {
-            timer = setInterval(function() { self.show(); }, self.config.interval * 1000);
+            timer = setInterval(function() { self.next(); }, self.config.interval * 1000);
         };
-
 
         self.stop = function() {
             clearInterval(timer);
