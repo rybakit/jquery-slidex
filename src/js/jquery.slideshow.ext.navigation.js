@@ -1,36 +1,35 @@
 (function($) {
     if ('undefined' == typeof $.slideshow) {
-        throw '$.slideshow is not found.';
+        $.error('jQuery.slideshow is not defined.');
     }
 
     ($.slideshow.ext = $.slideshow.ext || {}).navigation = function(slideshow) {
-        var items = [];
-        for (var i = 0, len = slideshow.slides.length; i < len; i++) {
-            if (i == slideshow.currentIndex) {
-                items.push('<li style="opacity:.9"></li>');
-            } else {
-                items.push('<li></li>');
-            }
-        }
-        var nav = $('<ul class="navigation">' + items.join('') + '</ul>');
-        nav.find('li').eq(slideshow.currentIndex).addClass('current');
-        $(slideshow.target).append(nav);
+        var jumpToIndex = null, items = [];
 
-        var jumpToIndex = null;
+        for (var i = 0, len = slideshow.slides.length; i < len; i++) {
+            items.push(i == slideshow.currentIndex ? '<li class="current"></li>' : '<li></li>');
+        }
+        var nav = $('<ul class="navigation">' + items.join('') + '</ul>')
+            .appendTo(slideshow.target);
 
         nav.find('li').click(function() {
+            if (null !== jumpToIndex) {
+                return false;
+            }
             jumpToIndex = $(this).index();
             slideshow.next();
         });
 
         $(slideshow).bind({
-            beforeNext: function(e, data) {
+            'beforeNext.slideshow': function(e, data) {
                 if (null !== jumpToIndex) {
-                     data.nextIndex = jumpToIndex;
+                    data.nextIndex = jumpToIndex;
                     jumpToIndex = null;
                 }
-                nav.find('li').eq(slideshow.currentIndex).animate({ opacity: .5 }, slideshow.config.speed);
-                nav.find('li').eq(data.nextIndex).animate({ opacity: .9 }, slideshow.config.speed);
+                if (slideshow.currentIndex == data.nextIndex) {
+                    return;
+                }
+                nav.find('li:eq(' + slideshow.currentIndex + '), li:eq(' + data.nextIndex + ')').toggleClass('current', slideshow.config.speed);
             }
         });
     }

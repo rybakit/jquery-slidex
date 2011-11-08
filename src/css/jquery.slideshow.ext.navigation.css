@@ -21,5 +21,9 @@
     list-style-position: inside;
     color: #fff;
     cursor: pointer;
-    opacity: .5;
+    opacity: .4;
+}
+
+.slideshow ul.navigation li.current, .slideshow ul.navigation li:hover {
+    opacity: .8;
 }
