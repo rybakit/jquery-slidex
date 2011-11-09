@@ -9,9 +9,12 @@
         self.config = $.extend(defaults, config);
         self.target = target;
         self.slides = $(self.target).children();
-        self.currentIndex = 0;
 
-        $(self.slides[self.currentIndex]).css('z-index', 2);
+        self.index = $('>.current', self.target).index();
+        if (-1 == self.index) {
+            $(self.slides[self.index = 0]).addClass('current');
+        }
+
         //$.slideshow.ext.navigation(self);
 
         self.next = function() {
@@ -21,22 +24,22 @@
             isLocked = true;
 
             var data = {
-                nextIndex: self.currentIndex == self.slides.length - 1 ? 0 : self.currentIndex + 1
+                nextIndex: self.index == self.slides.length - 1 ? 0 : self.index + 1
             };
 
             $(self).trigger('beforeNext.slideshow', [data]);
-            self.transform($(self.slides[self.currentIndex]), $(self.slides[data.nextIndex]), function() {
-                self.currentIndex = data.nextIndex;
+            self.transform($(self.slides[self.index]), $(self.slides[data.nextIndex]), function() {
+                self.index = data.nextIndex;
                 $(self).trigger('afterNext.slideshow');
                 isLocked = false;
             });
         };
 
         self.transform = function(from, to, callback) {
-            to.css('z-index', 1);
+            to.addClass('next');
             from.fadeOut(self.config.speed, function() {
-                to.css('z-index', 2);
-                from.css('z-index', 0).show();
+                to.addClass('current').removeClass('next');
+                from.removeClass('current').show();
                 callback.call(self);
             });
         };
