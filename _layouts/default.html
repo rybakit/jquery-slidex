@@ -12,6 +12,10 @@
             height: 160px;
         }
 
+        .btn {
+            margin-top: .5em;
+        }
+
         .footer { text-align:center; padding-top:30px; font-style: italic; }
     </style>
 </head>
@@ -38,10 +42,6 @@
             <img src="/assets/images/ladybug.jpg" width="580" height="360" alt="Ladybug" />
         </div>
 
-        <button class="btn small success">start</button>
-
-        {{ content }}
-
         <!--
         <div class="footer">
           get the source code on GitHub : <a href="https://github.com/rybakit/jquery-slideshow">rybakit/jquery-slideshow</a>
@@ -59,13 +59,18 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/js/jquery.slideshow.js"></script>
 
+    {{ content }}
+
     <script type="text/javascript">
         $(document).ready(function() {
             var example = $('#example');
-            $(':button').click(function() {
-                example.slideshow(example.slideshow('isPlaying') ? 'stop' : 'start');
-                $(this).text(example.slideshow('isPlaying') ? 'start' : 'stop');
-            });
+            $('<button class="btn small">' + (example.slideshow('isPlaying') ? 'Stop' : 'Start') + '</button>')
+                .insertAfter(example)
+                .click(function() {
+                    var isPlaying = example.slideshow('isPlaying');
+                    $(this).text(isPlaying ? 'Stop' : 'Start');
+                    example.slideshow(isPlaying ? 'stop' : 'start');
+                });
         });
     </script>
 

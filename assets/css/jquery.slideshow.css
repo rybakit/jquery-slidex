@@ -1,0 +1,17 @@
+.slideshow {
+    position: relative;
+    overflow: hidden;
+}
+
+.slideshow img {
+    position: absolute;
+    z-index: 0;
+}
+
+.slideshow img.current {
+    z-index: 2;
+}
+
+.slideshow img.next {
+    z-index: 1;
+}
