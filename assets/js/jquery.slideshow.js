@@ -2,8 +2,7 @@
     $.slideshow = function(target, config) {
         var defaults = {
                 interval: 5,
-                speed: 'slow',
-                autoStart: true
+                speed: 'slow'
             }, self = this, isLocked = false, timer = null;
 
         self.config = $.extend(defaults, config);
@@ -43,36 +42,12 @@
                 callback.call(self);
             });
         };
-
-        self.isPlaying = function() {
-            return null !== timer;
-        };
-
-        self.start = function() {
-            timer = setInterval(function() { self.next(); }, self.config.interval * 1000);
-        };
-
-        self.stop = function() {
-            clearInterval(timer);
-            timer = null;
-        };
     };
 
-    $.fn.slideshow = function(method) {
+    $.fn.slideshow = function(config) {
         return this.each(function() {
-            var slideshow = $.data(this, 'slideshow');
-
-            if (slideshow && $.isFunction(slideshow[method])) {
-                slideshow[method].apply(slideshow, Array.prototype.slice.call(arguments, 1));
-            } else if ('object' === typeof method || !method) {
-                slideshow = new $.slideshow(this, method);
-                $.data(this, 'slideshow', slideshow);
-                if (slideshow.config.autoStart) {
-                    slideshow.start();
-                }
-            } else {
-                $.error('Method ' +  method + ' does not exist on jQuery.slideshow');
-            }
+            var slideshow = new $.slideshow(this, config);
+            setInterval(function() { slideshow.next(); }, slideshow.config.interval * 1000);
         });
     }
 

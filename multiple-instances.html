@@ -1,0 +1,15 @@
+---
+title: Multiple instances
+layout: default
+---
+
+{% include image-slides.html %}
+<br>
+{% include richtext-slides.html %}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.image-slides').slideshow();
+        $('.richtext-slides').slideshow({ interval: 3 });
+    });
+</script>
