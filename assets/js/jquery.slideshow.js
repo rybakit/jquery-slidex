@@ -2,7 +2,8 @@
     $.slideshow = function(target, config) {
         var defaults = {
                 interval: 5,
-                speed: 'slow'
+                speed: 'slow',
+                transition: $.slideshow.transition
             }, self = this, isLocked = false, timer = null;
 
         self.config = $.extend(defaults, config);
@@ -27,13 +28,27 @@
             };
 
             $(self).trigger('beforeNext.slideshow', [data]);
+
+            self.transit($(self.slides[self.index]), $(self.slides[data.nextIndex]), function() {
+                self.index = data.nextIndex;
+                $(self).trigger('afterNext.slideshow');
+                isLocked = false;
+            });
+
+            /*
             self.transform($(self.slides[self.index]), $(self.slides[data.nextIndex]), function() {
                 self.index = data.nextIndex;
                 $(self).trigger('afterNext.slideshow');
                 isLocked = false;
             });
+            */
         };
 
+        self.transit = function(from, to, callback) {
+            self.config.transition.call(self, from, to, callback);
+        };
+
+        /*
         self.transform = function(from, to, callback) {
             to.addClass('next');
             from.fadeOut(self.config.speed, function() {
@@ -42,6 +57,16 @@
                 callback.call(self);
             });
         };
+        */
+    };
+
+    $.slideshow.transition = function(from, to, callback) {
+        to.addClass('next');
+        from.fadeOut(this.config.speed, function() {
+            to.addClass('current').removeClass('next');
+            from.removeClass('current').show();
+            callback.call(this);
+        });
     };
 
     $.fn.slideshow = function(config) {
