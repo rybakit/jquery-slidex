@@ -7,24 +7,53 @@ layout: default
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/javascript" src="/jquery-slideshow/assets/js/jquery.slideshow.js"></script>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
+        /*
         $('.slideshow').slideshow({ transition: function(from, to, callback) {
             var self = this;
+            from.addClass('next').removeClass('current');
+            to.css('top', '-' + to.css('height'))
+              .addClass('current')
+              .animate({ top: 0 }, {
+                  duration: this.config.speed,
+                  specialEasing: { top: 'easeOutBounce' },
+                  complete: function() {
+                      from.removeClass('next');
+                      callback.call(self);
+                  }
+              });
+        }});
+        */
+
+        $('.slideshow').slideshow({ interval: 2, transition: function(from, to, callback) {
+            var effect = [ 'clip', 'drop', 'explode', 'fold', 'puff' ][Math.floor(Math.random() * 5)];
+
             to.addClass('next');
-            from.animate({
-                left: '-=' + from.css('width')
-            }, {
-                duration: this.config.speed,
-                specialEasing: {
-                    left: 'easeOutBounce'
-                },
-                complete: function() {
-                   to.addClass('current').removeClass('next');
-                   from.removeClass('current').css('left', 0).show();
-                   callback.call(self);
-                }
+            from.effect(effect, {}, this.config.speed, function() {
+                to.addClass('current').removeClass('next');
+                from.removeClass('current').show();
+                callback.call(this);
             });
-      }});
+        }});
+
     });
 </script>
+
+<br>
+<link rel="stylesheet" href="http://pages.github.com/shared/css/pygments.css">
+
+{% highlight js %}
+    $('.slideshow').slideshow({ interval: 2, transition: function(from, to, callback) {
+        var effect = [ 'clip', 'drop', 'explode', 'fold', 'puff' ][Math.floor(Math.random() * 5)];
+
+        to.addClass('next');
+        from.effect(effect, {}, this.config.speed, function() {
+            to.addClass('current').removeClass('next');
+            from.removeClass('current').show();
+            callback.call(this);
+        });
+    }});
+{% endhighlight %}
