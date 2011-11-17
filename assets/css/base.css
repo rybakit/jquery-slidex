@@ -12,6 +12,10 @@ footer {
     margin-bottom: 30px;
 }
 
+pre > code {
+    background-color: none;
+}
+
 .content {
   background-color: #fff;
   padding: 20px;
