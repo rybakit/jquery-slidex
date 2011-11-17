@@ -28,11 +28,11 @@ layout: default
         }});
         */
 
-        $('.slideshow').slideshow({ interval: 2, transition: function(from, to, callback) {
-            var self = this, effects = ['clip', 'drop', 'explode', 'fold', 'puff'];
+        $('.slideshow').slideshow({ transition: function(from, to, callback) {
+            var self = this, effects = [ 'clip', 'drop', 'explode', 'fold', 'puff' ];
 
             to.addClass('next');
-            from.effect(effects[self.index % 5], {}, this.config.speed, function() {
+            from.effect(effects[ self.index % effects.length ], {}, this.config.speed, function() {
                 to.addClass('current').removeClass('next');
                 from.removeClass('current').show();
                 callback.call(self);
@@ -44,12 +44,18 @@ layout: default
 
 <br>
 
+{% highlight html %}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script type="text/javascript" src="jquery.slideshow.js"></script>
+{% endhighlight %}
+<br>
 {% highlight js %}
-$('.slideshow').slideshow({ interval: 2, transition: function(from, to, callback) {
+$('.slideshow').slideshow({ transition: function(from, to, callback) {
     var self = this, effects = ['clip', 'drop', 'explode', 'fold', 'puff'];
 
     to.addClass('next');
-    from.effect(effects[self.index % 5], {}, this.config.speed, function() {
+    from.effect(effects[ self.index % effects.length ], {}, this.config.speed, function() {
         to.addClass('current').removeClass('next');
         from.removeClass('current').show();
         callback.call(self);
