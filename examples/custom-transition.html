@@ -29,13 +29,13 @@ layout: default
         */
 
         $('.slideshow').slideshow({ interval: 2, transition: function(from, to, callback) {
-            var effect = [ 'clip', 'drop', 'explode', 'fold', 'puff' ][Math.floor(Math.random() * 5)];
+            var self = this, effects = ['clip', 'drop', 'explode', 'fold', 'puff'];
 
             to.addClass('next');
-            from.effect(effect, {}, this.config.speed, function() {
+            from.effect(effects[self.index % 5], {}, this.config.speed, function() {
                 to.addClass('current').removeClass('next');
                 from.removeClass('current').show();
-                callback.call(this); // self?
+                callback.call(self);
             });
         }});
 
@@ -46,13 +46,13 @@ layout: default
 
 {% highlight js %}
 $('.slideshow').slideshow({ interval: 2, transition: function(from, to, callback) {
-    var effect = [ 'clip', 'drop', 'explode', 'fold', 'puff' ][Math.floor(Math.random() * 5)];
+    var self = this, effects = ['clip', 'drop', 'explode', 'fold', 'puff'];
 
     to.addClass('next');
-    from.effect(effect, {}, this.config.speed, function() {
+    from.effect(effects[self.index % 5], {}, this.config.speed, function() {
         to.addClass('current').removeClass('next');
         from.removeClass('current').show();
-        callback.call(this);
+        callback.call(self);
     });
 }});
 {% endhighlight %}

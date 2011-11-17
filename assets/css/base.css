@@ -13,7 +13,7 @@ footer {
 }
 
 pre > code {
-    background-color: none;
+    background: none;
 }
 
 .content {
@@ -23,9 +23,9 @@ pre > code {
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
           border-radius: 6px;
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-          box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
 }
 
 .content h2 {
