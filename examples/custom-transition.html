@@ -12,8 +12,9 @@ layout: default
 <script type="text/javascript">
     $(document).ready(function() {
         /*
-        $('.slideshow').slideshow({ transition: function(from, to, callback) {
-            var self = this;
+        $('.slideshow').slideshow({ transition: function(from, to) {
+            var d = $.Deferred();
+
             from.addClass('next').removeClass('current');
             to.css('top', '-' + to.css('height'))
               .addClass('current')
@@ -22,21 +23,25 @@ layout: default
                   specialEasing: { top: 'easeOutBounce' },
                   complete: function() {
                       from.removeClass('next');
-                      callback.call(self);
+                      d.resolve();
                   }
               });
+
+            return d.promise();
         }});
         */
 
-        $('.slideshow').slideshow({ transition: function(from, to, callback) {
-            var self = this, effects = [ 'clip', 'drop', 'explode', 'fold', 'puff' ];
+        $('.slideshow').slideshow({ transition: function(from, to) {
+            var d = $.Deferred(), effects = [ 'clip', 'drop', 'explode', 'fold', 'puff' ];
 
             to.addClass('next');
-            from.effect(effects[ self.index % effects.length ], {}, self.config.speed, function() {
+            from.effect(effects[ this.index % effects.length ], {}, this.config.speed, function() {
                 to.addClass('current').removeClass('next');
                 from.removeClass('current').show();
-                callback.call(self);
+                d.resolve();
             });
+
+            return d.promise();
         }});
 
     });
@@ -53,14 +58,16 @@ layout: default
 <br>
 
 {% highlight js %}
-$('.slideshow').slideshow({ transition: function(from, to, callback) {
-    var self = this, effects = ['clip', 'drop', 'explode', 'fold', 'puff'];
+$('.slideshow').slideshow({ transition: function(from, to) {
+    var d = $.Deferred(), effects = [ 'clip', 'drop', 'explode', 'fold', 'puff' ];
 
     to.addClass('next');
-    from.effect(effects[ self.index % effects.length ], {}, self.config.speed, function() {
+    from.effect(effects[ this.index % effects.length ], {}, this.config.speed, function() {
         to.addClass('current').removeClass('next');
         from.removeClass('current').show();
-        callback.call(self);
+        d.resolve();
     });
+
+    return d.promise();
 }});
 {% endhighlight %}
