@@ -36,18 +36,18 @@
                 if (-1 == this.index) {
                     $(this.slides[ this.index = 0 ]).addClass('current');
                 }
-                //$.slideshow.ext.navigation(self);
+                //$.slideshow.ext.navigation(this);
             },
 
-            transition: function(from, to) {
+            transition: function() {
                 if ($.isFunction(this.config.transition)) {
-                    return this.config.transition.call(this, from, to);
+                    return this.config.transition;
                 }
                 if (!$.slideshow.transitions[this.config.transition]) {
                     $.error('The transition "' + this.config.transition + '" is not supported.');
                     return false;
                 }
-                return $.slideshow.transitions[this.config.transition].call(this, from, to);
+                return $.slideshow.transitions[this.config.transition];
             },
 
             next: function() {
@@ -63,11 +63,13 @@
                 };
 
                 $(self).trigger('beforeNext.slideshow', [data]);
-                self.transition($(self.slides[self.index]), $(self.slides[data.nextIndex])).then(function() {
-                    self.index = data.nextIndex;
-                    $(self).trigger('afterNext.slideshow');
-                    self.locked = false;
-                });
+                self.transition()
+                    .call(self, $(self.slides[self.index]), $(self.slides[data.nextIndex]))
+                    .done(function() {
+                        self.index = data.nextIndex;
+                        $(self).trigger('afterNext.slideshow');
+                        self.locked = false;
+                    });
             }
         }
     });
