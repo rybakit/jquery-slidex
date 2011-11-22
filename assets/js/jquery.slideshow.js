@@ -1,57 +1,76 @@
 (function($) {
     $.slideshow = function(target, config) {
-        var defaults = {
-                interval: 5,
-                speed: 'slow',
-                transition: $.slideshow.transition
-            }, self = this, isLocked = false, timer = null;
+        this.config = $.extend($.slideshow.defaults, config);
+        this.target = target;
+        this.init();
+    };
 
-        self.config = $.extend(defaults, config);
-        self.target = target;
-        self.slides = $(self.target).children();
+    $.extend($.slideshow, {
+        defaults: {
+            interval: 5,
+            speed: 'slow',
+            transition: 'fade'
+        },
 
-        self.index = $('>.current', self.target).index();
-        if (-1 == self.index) {
-            $(self.slides[self.index = 0]).addClass('current');
-        }
+        transitions: {
+            fade: function(from, to) {
+                var d = $.Deferred();
 
-        //$.slideshow.ext.navigation(self);
+                to.addClass('next');
+                from.fadeOut(this.config.speed, function() {
+                    to.addClass('current').removeClass('next');
+                    from.removeClass('current').show();
+                    d.resolve();
+                });
 
-        self.transition = function(from, to) {
-            return self.config.transition.call(self, from, to);
-        };
-
-        self.next = function() {
-            if (isLocked) {
-                return false;
+                return d.promise();
             }
-            isLocked = true;
+        },
 
-            var data = {
-                nextIndex: self.index == self.slides.length - 1 ? 0 : self.index + 1
-            };
+        prototype: {
+            constructor: $.slideshow,
 
-            $(self).trigger('beforeNext.slideshow', [data]);
-            self.transition($(self.slides[self.index]), $(self.slides[data.nextIndex])).then(function() {
-                self.index = data.nextIndex;
-                $(self).trigger('afterNext.slideshow');
-                isLocked = false;
-            });
-        };
-    };
+            init: function() {
+                this.slides = $(this.target).children();
+                this.index = $('>.current', this.target).index();
+                if (-1 == this.index) {
+                    $(this.slides[ this.index = 0 ]).addClass('current');
+                }
+                //$.slideshow.ext.navigation(self);
+            },
 
-    $.slideshow.transition = function(from, to) {
-        var d = $.Deferred();
+            transition: function(from, to) {
+                if ($.isFunction(this.config.transition)) {
+                    return this.config.transition.call(this, from, to);
+                }
+                if (!$.slideshow.transitions[this.config.transition]) {
+                    $.error('The transition "' + this.config.transition + '" is not supported.');
+                    return false;
+                }
+                return $.slideshow.transitions[this.config.transition].call(this, from, to);
+            },
 
-        to.addClass('next');
-        from.fadeOut(this.config.speed, function() {
-            to.addClass('current').removeClass('next');
-            from.removeClass('current').show();
-            d.resolve();
-        });
+            next: function() {
+                var self = this;
 
-        return d.promise();
-    };
+                if (self.locked) {
+                    return false;
+                }
+                self.locked = true;
+
+                var data = {
+                    nextIndex: self.index == self.slides.length - 1 ? 0 : self.index + 1
+                };
+
+                $(self).trigger('beforeNext.slideshow', [data]);
+                self.transition($(self.slides[self.index]), $(self.slides[data.nextIndex])).then(function() {
+                    self.index = data.nextIndex;
+                    $(self).trigger('afterNext.slideshow');
+                    self.locked = false;
+                });
+            }
+        }
+    });
 
     $.fn.slideshow = function(config) {
         return this.each(function() {
