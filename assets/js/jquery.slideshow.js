@@ -9,7 +9,8 @@
         defaults: {
             interval: 5,
             speed: 'slow',
-            transition: 'fade'
+            transition: 'fade',
+            plugins: []
         },
 
         transitions: {
@@ -36,7 +37,9 @@
                 if (-1 == this.index) {
                     $(this.slides[ this.index = 0 ]).addClass('current');
                 }
-                //$.slideshow.ext.navigation(this);
+                for (var i = 0, len = this.config.plugins.length; i < len; i++) {
+                    this.config.plugins[i].call(this);
+                }
             },
 
             transition: function() {

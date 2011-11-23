@@ -1,4 +1,4 @@
-.slideshow ul.navigation {
+.slideshow ul.pagination {
     position: absolute;
     bottom: .3em;
     right: .3em;
@@ -9,7 +9,7 @@
     overflow: hidden;
 }
 
-.slideshow ul.navigation li {
+.slideshow ul.pagination li {
     float: left;
     width: .8em;
     height: 1.2em;
@@ -24,6 +24,6 @@
     opacity: .4;
 }
 
-.slideshow ul.navigation li.current, .slideshow ul.navigation li:hover {
+.slideshow ul.pagination li.current, .slideshow ul.pagination li:hover {
     opacity: .8;
 }
