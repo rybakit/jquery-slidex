@@ -7,14 +7,18 @@
 
     $.extend($.slideshow, {
         defaults: {
-            interval: 5,
-            speed: 'slow',
-            transition: 'fade',
-            plugins: []
-        },
+            interval:   5,
+            speed:      'slow',
+            plugins:    [],
 
-        transitions: {
-            fade: function(from, to) {
+            /*
+            transition: function(from, to) {
+                to.show();
+                from.hide();
+            }
+            */
+
+            transition: function(from, to) {
                 var d = $.Deferred();
 
                 to.addClass('next');
@@ -26,6 +30,7 @@
 
                 return d.promise();
             }
+
         },
 
         prototype: {
@@ -42,17 +47,6 @@
                 }
             },
 
-            transition: function() {
-                if ($.isFunction(this.config.transition)) {
-                    return this.config.transition;
-                }
-                if (!$.slideshow.transitions[this.config.transition]) {
-                    $.error('The transition "' + this.config.transition + '" is not supported.');
-                    return false;
-                }
-                return $.slideshow.transitions[this.config.transition];
-            },
-
             next: function() {
                 var self = this;
 
@@ -66,13 +60,13 @@
                 };
 
                 $(self).trigger('beforeNext.slideshow', [data]);
-                self.transition()
-                    .call(self, $(self.slides[self.index]), $(self.slides[data.nextIndex]))
-                    .done(function() {
-                        self.index = data.nextIndex;
-                        $(self).trigger('afterNext.slideshow');
-                        self.locked = false;
-                    });
+                $.when(
+                    this.config.transition.call(self, $(self.slides[self.index]), $(self.slides[data.nextIndex]))
+                ).done(function() {
+                    self.index = data.nextIndex;
+                    $(self).trigger('afterNext.slideshow');
+                    self.locked = false;
+                });
             }
         }
     });

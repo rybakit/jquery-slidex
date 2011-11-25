@@ -1,5 +1,5 @@
 ---
-title: "Example: Basic"
+title: "Example: Custom plugin"
 layout: default
 ---
 
@@ -25,20 +25,36 @@ layout: default
     .image-slides img.next {
         z-index: 1;
     }
+
+    #indicator-bar {
+        width: 580px;
+        height: 3px;
+        background: #000;
+    }
+    #indicator-bar p {
+        width: 0;
+        height: 3px;
+        background: red;
+    }
 </style>
 
 {% include image-slides.html %}
-<br>
-
-{% highlight js %}
-$('.slideshow').slideshow();
-{% endhighlight %}
+<div id="indicator-bar"><p></p></div>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/javascript" src="/jquery-slideshow/assets/js/jquery.slideshow.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('.slideshow').slideshow();
+        $('.slideshow').slideshow({ plugins: [ function() {
+            var self = this, indicator = $('#indicator-bar p'),
+                show = function() {
+                    indicator.animate({ width: '100%' }, self.config.interval * 1000, function() {
+                        indicator.width(0);
+                    });
+                };
+
+            show();
+            $(this).bind({ 'beforeNext.slideshow': show });
+        }]});
     });
 </script>
-
