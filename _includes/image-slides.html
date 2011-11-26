@@ -1,4 +1,24 @@
-<div class="image-slides slideshow">
+<style type="text/css">
+    .image-slides {
+        width: 580px;
+        height: 360px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .image-slides .active, .image-slides .last-active {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
+
+    .image-slides .last-active {
+        z-index: 1;
+    }
+</style>
+
+<div class="slideshow image-slides">
     <img src="/jquery-slideshow/assets/images/flowing-rock.jpg" width="580" height="360" alt="Flowing Rock">
     <img src="/jquery-slideshow/assets/images/grass-blades.jpg" width="580" height="360" alt="Grass Blades">
     <img src="/jquery-slideshow/assets/images/stones.jpg" width="580" height="360" alt="Stones">
@@ -7,5 +27,5 @@
     <img src="/jquery-slideshow/assets/images/lotus.jpg" width="580" height="360" alt="Lotus">
     <img src="/jquery-slideshow/assets/images/mojave.jpg" width="580" height="360" alt="Mojave">
     <img src="/jquery-slideshow/assets/images/lightning.jpg" width="580" height="360" alt="Lightning">
-    <img src="/jquery-slideshow/assets/images/ladybug.jpg" width="580" height="360" alt="Ladybug">
+    <img class="active" src="/jquery-slideshow/assets/images/ladybug.jpg" width="580" height="360" alt="Ladybug">
 </div>

@@ -13,24 +13,17 @@
 
             /*
             transition: function(from, to) {
-                to.show();
-                from.hide();
+                to.addClass('active').show();
+                from.removeClass('active').show();
             }
             */
 
             transition: function(from, to) {
-                var d = $.Deferred();
-
-                to.addClass('next');
-                from.fadeOut(this.config.speed, function() {
-                    to.addClass('current').removeClass('next');
-                    from.removeClass('current').show();
-                    d.resolve();
+                from.addClass('last-active').removeClass('active');
+                return to.hide().addClass('active').fadeIn(this.config.speed, function() {
+                    from.removeClass('last-active');
                 });
-
-                return d.promise();
             }
-
         },
 
         prototype: {
@@ -38,9 +31,9 @@
 
             init: function() {
                 this.slides = $(this.target).children();
-                this.index = $('>.current', this.target).index();
+                this.index = $('>.active', this.target).index();
                 if (-1 == this.index) {
-                    $(this.slides[ this.index = 0 ]).addClass('current');
+                    $(this.slides[ this.index = 0 ]).addClass('active');
                 }
                 for (var i = 0, len = this.config.plugins.length; i < len; i++) {
                     this.config.plugins[i].call(this);

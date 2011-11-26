@@ -4,8 +4,6 @@ layout: default
 ---
 
 <style type="text/css">
-    /*class="image-slides slideshow"*/
-
     .image-slides {
         width: 580px;
         height: 360px;
@@ -13,16 +11,14 @@ layout: default
         overflow: hidden;
     }
 
-    .image-slides img {
+    .image-slides .active, .image-slides .last-active {
         position: absolute;
-        z-index: 0;
-    }
-
-    .image-slides img.current {
+        top: 0;
+        left: 0;
         z-index: 2;
     }
 
-    .image-slides img.next {
+    .image-slides .last-active {
         z-index: 1;
     }
 </style>

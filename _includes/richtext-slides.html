@@ -1,4 +1,44 @@
-<ul class="richtext-slides slideshow">
+<style type="text/css">
+    .richtext-slides {
+        width: 580px;
+        height: 126px;
+        position: relative;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+        background: #eee;
+        list-style: none;
+    }
+
+    .richtext-slides li {
+        position: absolute;
+        display: block;
+        overflow: hidden;
+        padding: 1em;
+        height: 160px;
+        background: #eee;
+        z-index: 0;
+    }
+
+    .richtext-slides li.active {
+        z-index: 2;
+    }
+
+    .richtext-slides li.last-active {
+        z-index: 1;
+    }
+
+    .img-box img {
+        float: left;
+        margin-right: 1em;
+    }
+    .img-box-text {
+        display: table;
+        margin: 0;
+    }
+</style>
+
+<ul class="slideshow richtext-slides">
     <li>
         <div class="img-box">
             <a href="#"><img alt="" src="http://placehold.it/100x100"></a>

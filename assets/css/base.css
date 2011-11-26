@@ -39,18 +39,3 @@ pre > code {
     padding-left: 19px;
     border-left: 1px solid #eee;
 }
-
-
-
-
-
-
-
-.img-box img {
-    float: left;
-    margin-right: 1em;
-}
-.img-box-text {
-    display: table;
-    margin: 0;
-}
