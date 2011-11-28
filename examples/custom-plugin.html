@@ -4,34 +4,13 @@ layout: default
 ---
 
 <style type="text/css">
-    /*class="image-slides slideshow"*/
-
-    .image-slides {
-        width: 580px;
-        height: 360px;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .image-slides img {
-        position: absolute;
-        z-index: 0;
-    }
-
-    .image-slides img.current {
-        z-index: 2;
-    }
-
-    .image-slides img.next {
-        z-index: 1;
-    }
-
-    #indicator-bar {
+    .indicator-bar {
         width: 580px;
         height: 3px;
         background: #000;
     }
-    #indicator-bar p {
+
+    .indicator-bar p {
         width: 0;
         height: 3px;
         background: red;
@@ -39,22 +18,23 @@ layout: default
 </style>
 
 {% include image-slides.html %}
-<div id="indicator-bar"><p></p></div>
+<div class="indicator-bar"><p></p></div>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script type="text/javascript" src="/jquery-slideshow/assets/js/jquery.slideshow.js"></script>
+<script type="text/javascript" src="/jquery-slideshow/assets/js/jquery.slidex.js"></script>
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('.slideshow').slideshow({ plugins: [ function() {
-            var self = this, indicator = $('#indicator-bar p'),
-                show = function() {
-                    indicator.animate({ width: '100%' }, self.config.interval * 1000, function() {
-                        indicator.width(0);
-                    });
-                };
+    $(function() {
+        $('.slides').slidex(null, function(slidex) {
+            var indicator = $('.indicator-bar p');
 
-            show();
-            $(this).bind({ 'beforeNext.slideshow': show });
-        }]});
+            function anim() {
+                indicator.animate({ width: '100%' }, slidex.config.interval * 1000, function() {
+                    $(this).width(0);
+                });
+            };
+
+            anim();
+            $(slidex).bind({ 'before.slidex': anim });
+        });
     });
 </script>

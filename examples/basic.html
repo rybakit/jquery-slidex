@@ -3,38 +3,17 @@ title: "Example: Basic"
 layout: default
 ---
 
-<style type="text/css">
-    .image-slides {
-        width: 580px;
-        height: 360px;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .image-slides .active, .image-slides .last-active {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 2;
-    }
-
-    .image-slides .last-active {
-        z-index: 1;
-    }
-</style>
-
 {% include image-slides.html %}
 <br>
 
 {% highlight js %}
-$('.slideshow').slideshow();
+$('.slides').slidex();
 {% endhighlight %}
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script type="text/javascript" src="/jquery-slideshow/assets/js/jquery.slideshow.js"></script>
+<script type="text/javascript" src="/jquery-slideshow/assets/js/jquery.slidex.js"></script>
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('.slideshow').slideshow();
+    $(function() {
+        $('.slides').slidex();
     });
 </script>
-

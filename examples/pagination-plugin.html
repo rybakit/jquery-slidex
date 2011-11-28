@@ -3,15 +3,46 @@ title: "Example: Pagination plugin"
 layout: default
 ---
 
-{% include image-slides.html %}
+<style type="text/css">
+    .slidex-pagination {
+        position: absolute;
+        bottom: .3em;
+        right: .3em;
+        height: 1.4em;
+        margin: 0;
+        padding: 0;
+        z-index: 20;
+        overflow: hidden;
+    }
+    ul.slidex-pagination li {
+        float: left;
+        width: .8em;
+        height: 1.2em;
+        font-size: 2em;
+        line-height: .7em;
+        margin: 0 0 0 1px;
+        text-indent: .2em;
+        list-style-position: inside;
+        color: #fff;
+        cursor: pointer;
+        opacity: .4;
+    }
 
-<link rel="stylesheet" href="/jquery-slideshow/assets/css/jquery.slideshow.pagination.css">
+    ul.slidex-pagination li.current, ul.slidex-pagination li:hover {
+        opacity: .8;
+    }
+</style>
+
+{% include image-slides.html %}
+<ul class="slidex-pagination"><li></li></ul>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script type="text/javascript" src="/jquery-slideshow/assets/js/jquery.slideshow.js"></script>
-<script type="text/javascript" src="/jquery-slideshow/assets/js/jquery.slideshow.pagination.js"></script>
+<script type="text/javascript" src="/jquery-slideshow/assets/js/jquery.slidex.js"></script>
+<script type="text/javascript" src="/jquery-slideshow/assets/js/jquery.slidex.pagination.js"></script>
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('.slideshow').slideshow({ plugins: [ $.slideshow.plugins.pagination ]});
+    $(function() {
+        $('.slides').slidex(null, function(slidex) {
+            $.slidex.ext.pagination(slidex, { container: '.slidex-pagination' });
+        });
     });
 </script>

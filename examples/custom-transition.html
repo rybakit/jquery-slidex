@@ -6,44 +6,35 @@ layout: default
 {% include image-slides.html %}
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script type="text/javascript" src="/jquery-slideshow/assets/js/jquery.slideshow.js"></script>
+<script type="text/javascript" src="/jquery-slideshow/assets/js/jquery.slidex.js"></script>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(function() {
         /*
-        $('.slideshow').slideshow({ transition: function(from, to) {
-            var d = $.Deferred();
-
-            from.addClass('next').removeClass('current');
-            to.css('top', '-' + to.css('height'))
-              .addClass('current')
+        $('.slides').slidex({ transition: function(from, to) {
+            from.addClass('last-active').removeClass('active');
+            return to.css('top', '-' + to.css('height'))
+              .addClass('active')
               .animate({ top: 0 }, {
                   duration: this.config.speed,
                   specialEasing: { top: 'easeOutBounce' },
                   complete: function() {
-                      from.removeClass('next');
-                      d.resolve();
+                      from.removeClass('last-active');
                   }
               });
-
-            return d.promise();
         }});
         */
 
-        $('.slideshow').slideshow({ transition: function(from, to) {
-            var d = $.Deferred(), effects = [ 'clip', 'drop', 'explode', 'fold', 'puff' ];
+        $('.slides').slidex({ transition: function(from, to) {
+            var effects = [ 'clip', 'drop', 'explode', 'fold', 'puff' ];
 
-            to.addClass('next');
-            from.effect(effects[ this.index % effects.length ], {}, this.config.speed, function() {
-                to.addClass('current').removeClass('next');
-                from.removeClass('current').show();
-                d.resolve();
-            });
-
-            return d.promise();
+            to.addClass('last-active');
+            return from.effect(effects[ this.index % effects.length ], {}, this.config.speed, function() {
+                    to.addClass('active').removeClass('last-active');
+                    from.removeClass('active').show();
+                });
         }});
-
     });
 </script>
 
@@ -52,22 +43,19 @@ layout: default
 {% highlight html %}
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-<script type="text/javascript" src="jquery.slideshow.js"></script>
+<script type="text/javascript" src="jquery.slidex.js"></script>
 {% endhighlight %}
 
 <br>
 
 {% highlight js %}
-$('.slideshow').slideshow({ transition: function(from, to) {
-    var d = $.Deferred(), effects = [ 'clip', 'drop', 'explode', 'fold', 'puff' ];
+$('.slides').slidex({ transition: function(from, to) {
+    var effects = [ 'clip', 'drop', 'explode', 'fold', 'puff' ];
 
-    to.addClass('next');
-    from.effect(effects[ this.index % effects.length ], {}, this.config.speed, function() {
-        to.addClass('current').removeClass('next');
-        from.removeClass('current').show();
-        d.resolve();
-    });
-
-    return d.promise();
+    to.addClass('last-active');
+    return from.effect(effects[ this.index % effects.length ], {}, this.config.speed, function() {
+            to.addClass('active').removeClass('last-active');
+            from.removeClass('active').show();
+        });
 }});
 {% endhighlight %}

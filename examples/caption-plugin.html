@@ -4,14 +4,14 @@ layout: default
 ---
 
 {% include image-slides.html %}
-<div class="slideshow-caption" style="display:none;background:#000;color:#aaa;padding:5px"></div>
+<div class="slidex-caption" style="display:none;background:#000;color:#aaa;padding:5px"></div>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script type="text/javascript" src="/jquery-slideshow/assets/js/jquery.slideshow.js"></script>
+<script type="text/javascript" src="/jquery-slideshow/assets/js/jquery.slidex.js"></script>
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('.slideshow').slideshow({ plugins: [ function() {
-            var self = this, caption = $('.slideshow-caption'),
+    $(function() {
+        $('.slides').slidex({ plugins: [ function() {
+            var self = this, caption = $('.slidex-caption'),
                 show = function() {
                     var title = $(self.slides[self.index]).attr('title');
                     caption.show().html('<span>title: ' + self.index + '</span>');
@@ -19,10 +19,10 @@ layout: default
 
             show();
             $(this).bind({
-                'beforeNext.slideshow': function() {
+                'beforeNext.slidex': function() {
                     caption.find('>span').fadeOut(self.config.speed);
                 },
-                'afterNext.slideshow': show
+                'afterNext.slidex': show
             });
         }]});
     });
