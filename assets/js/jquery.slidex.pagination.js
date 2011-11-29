@@ -19,9 +19,9 @@
             slidex.show($(this).index());
         });
         $(slidex).bind({
-            'before.slidex': function(e, currentIndex, nextIndex) {
-                //pages[currentIndex].animate({ opacity: 0.4 }, slidex.config.speed);
-                //pages[nextIndex].animate({ opacity: 0.8 }, slidex.config.speed);
+            'before.slidex': function(e, oldIndex, newIndex) {
+                //pages[oldIndex].animate({ opacity: 0.4 }, slidex.config.speed);
+                //pages[newIndex].animate({ opacity: 0.8 }, slidex.config.speed);
             }
         });
     }
