@@ -28,13 +28,15 @@ layout: default
         opacity: .4;
     }
 
-    ul.slidex-pagination li.current, ul.slidex-pagination li:hover {
+    ul.slidex-pagination li.active, ul.slidex-pagination li:hover {
         opacity: .8;
     }
 </style>
 
+
 {% include image-slides.html %}
 <ul class="slidex-pagination"><li></li></ul>
+
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/javascript" src="/jquery-slideshow/assets/js/jquery.slidex.js"></script>
@@ -42,7 +44,7 @@ layout: default
 <script type="text/javascript">
     $(function() {
         $('.slides').slidex(null, function(slidex) {
-            $.slidex.ext.pagination(slidex, { container: '.slidex-pagination' });
+            $.slidex.ext.pagination(slidex, '.slidex-pagination');
         });
     });
 </script>
