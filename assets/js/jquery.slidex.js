@@ -10,9 +10,9 @@
             interval: 5,
             speed: 'slow',
             transition: function(from, to) {
-                from.addClass('last-active').removeClass('active');
-                return to.hide().addClass('active').fadeIn(this.config.speed, function() {
-                    from.removeClass('last-active');
+                from.addClass('slidex-semi-active').removeClass('slidex-active');
+                return to.hide().addClass('slidex-active').fadeIn(this.config.speed, function() {
+                    from.removeClass('slidex-semi-active');
                 });
             }
         },
@@ -22,9 +22,9 @@
 
             init: function() {
                 this.slides = $(this.target).children();
-                this.index = $('>.active', this.target).index();
+                this.index = $('>.slidex-active', this.target).index();
                 if (-1 == this.index) {
-                    $(this.slides[ this.index = 0 ]).addClass('active');
+                    $(this.slides[ this.index = 0 ]).addClass('slidex-active');
                 }
             },
 

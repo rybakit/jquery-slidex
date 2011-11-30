@@ -13,14 +13,14 @@ layout: default
     $(function() {
         /*
         $('.slides').slidex({ transition: function(from, to) {
-            from.addClass('last-active').removeClass('active');
+            from.addClass('slidex-semi-active').removeClass('slidex-active');
             return to.css('top', '-' + to.css('height'))
-              .addClass('active')
+              .addClass('slidex-active')
               .animate({ top: 0 }, {
                   duration: this.config.speed,
                   specialEasing: { top: 'easeOutBounce' },
                   complete: function() {
-                      from.removeClass('last-active');
+                      from.removeClass('slidex-semi-active');
                   }
               });
         }});
@@ -29,10 +29,10 @@ layout: default
         $('.slides').slidex({ transition: function(from, to) {
             var effects = [ 'clip', 'drop', 'explode', 'fold', 'puff' ];
 
-            to.addClass('last-active');
+            to.addClass('slidex-semi-active');
             return from.effect(effects[ this.index % effects.length ], {}, this.config.speed, function() {
-                    to.addClass('active').removeClass('last-active');
-                    from.removeClass('active').show();
+                    to.addClass('slidex-active').removeClass('slidex-semi-active');
+                    from.removeClass('slidex-active').show();
                 });
         }});
     });
@@ -52,10 +52,10 @@ layout: default
 $('.slides').slidex({ transition: function(from, to) {
     var effects = [ 'clip', 'drop', 'explode', 'fold', 'puff' ];
 
-    to.addClass('last-active');
+    to.addClass('slidex-semi-active');
     return from.effect(effects[ this.index % effects.length ], {}, this.config.speed, function() {
-            to.addClass('active').removeClass('last-active');
-            from.removeClass('active').show();
+            to.addClass('slidex-active').removeClass('slidex-semi-active');
+            from.removeClass('slidex-active').show();
         });
 }});
 {% endhighlight %}
