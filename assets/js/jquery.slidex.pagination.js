@@ -1,6 +1,7 @@
 (function($) {
     ($.slidex.ext = $.slidex.ext || {}).pagination = function(slidex, container) {
-        var pages = $(container).children().click(function() {
+        var pages = $(container).children().click(function(e) {
+            e.preventDefault();
             slidex.show($(this).index());
         });
 
@@ -8,11 +9,11 @@
             pages[i] = pages.last().clone(true).appendTo(container);
         }
 
-        $(slidex).bind({
-            'before.slidex': function(e, oldIndex, newIndex) {
-                $(pages[oldIndex]).animate({ opacity: 0.4 }, slidex.config.speed);
-                $(pages[newIndex]).animate({ opacity: 0.8 }, slidex.config.speed);
-            }
+        $(pages[slidex.index]).css('opacity', .8);
+
+        $(slidex).bind('before.slidex', function(e, oldIndex, newIndex) {
+            $(pages[oldIndex]).animate({ opacity: .4 }, slidex.config.speed);
+            $(pages[newIndex]).animate({ opacity: .8 }, slidex.config.speed);
         });
     };
 }(jQuery));
