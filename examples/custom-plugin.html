@@ -28,7 +28,7 @@ layout: default
             var indicator = $('.indicator-bar p');
 
             function anim() {
-                indicator.animate({ width: '100%' }, slidex.config.interval * 1000, function() {
+                indicator.animate({ width: '100%' }, slidex.config.delay * 1000, function() {
                     $(this).width(0);
                 });
             };

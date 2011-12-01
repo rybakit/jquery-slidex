@@ -7,7 +7,7 @@
 
     $.extend($.slidex, {
         defaults: {
-            interval: 5,
+            delay: 5,
             speed: 'slow',
             transition: function(from, to) {
                 from.addClass('slidex-semi-active').removeClass('slidex-active');
@@ -55,7 +55,7 @@
                 if (self.timer) {
                     clearInterval(self.timer);
                 }
-                self.timer = setInterval(function() { self.show(); }, self.config.interval * 1000);
+                self.timer = setInterval(function() { self.show(); }, self.config.delay * 1000);
             }
         }
     });
