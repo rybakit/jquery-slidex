@@ -18,8 +18,6 @@
         },
 
         prototype: {
-            constructor: $.slidex,
-
             init: function() {
                 this.slides = $(this.target).children();
                 this.index = $('>.slidex-active', this.target).index();
