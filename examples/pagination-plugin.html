@@ -4,38 +4,29 @@ layout: default
 ---
 
 <style type="text/css">
-    .slidex-pagination {
-        position: absolute;
-        bottom: .3em;
-        right: .3em;
-        height: 1.4em;
-        margin: 0;
-        padding: 0;
-        z-index: 20;
-        overflow: hidden;
-    }
-    ul.slidex-pagination li {
-        float: left;
-        width: .8em;
-        height: 1.2em;
-        font-size: 2em;
-        line-height: .7em;
-        margin: 0 0 0 1px;
-        text-indent: .2em;
-        list-style-position: inside;
-        color: #fff;
-        cursor: pointer;
-        opacity: .4;
-    }
-
-    ul.slidex-pagination li.active, ul.slidex-pagination li:hover {
-        opacity: .8;
-    }
+    {% include image-slides.css %}
+    {% include examples/pagination-plugin.css %}
 </style>
 
 
-{% include image-slides.html %}
-<ul class="slidex-pagination"><li></li></ul>
+{% include examples/pagination-plugin.html %}
+
+<h3>CSS</h3>
+{% highlight css %}
+{% include image-slides.css %}
+
+{% include examples/pagination-plugin.css %}
+{% endhighlight %}
+
+<h3>HTML</h3>
+{% highlight html %}
+{% include examples/pagination-plugin.html %}
+{% endhighlight %}
+
+<h3>JavaScript</h3>
+{% highlight js %}
+{% include examples/pagination-plugin.js %}
+{% endhighlight %}
 
 <!--
 
@@ -85,8 +76,6 @@ layout: default
 <script type="text/javascript" src="/jquery-slidex/assets/js/jquery.slidex.pagination.js"></script>
 <script type="text/javascript">
     $(function() {
-        $('.slides').slidex(null, function(slidex) {
-            $.slidex.ext.pagination(slidex, '.slidex-pagination');
-        });
+        {% include examples/pagination-plugin.js %}
     });
 </script>

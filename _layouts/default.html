@@ -9,6 +9,50 @@
     </head>
 
     <body>
+
+        <div class="topbar">
+            <div class="fill">
+                <div class="container">
+                    <a class="brand" href="/jquery-slidex/">jQuery Slidex Plugin</a>
+                    <ul class="nav">
+                        <li><a href="/jquery-slidex/">Home</a></li>
+                        <li class="active dropdown">
+                            <a class="dropdown-toggle" href="#">Examples</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/jquery-slidex/examples/basic.html">Basic</a></li>
+                                <li><a href="/jquery-slidex/examples/multiple-instances.html">Multiple instances</a></li>
+                                <li><a href="/jquery-slidex/examples/custom-transition.html">Custom transition</a></li>
+                                <li><a href="/jquery-slidex/examples/pagination-plugin.html">Pagination plugin</a></li>
+                                <li><a href="/jquery-slidex/examples/caption-plugin.html">Caption plugin</a></li>
+                                <li><a href="/jquery-slidex/examples/custom-plugin.html">Custom plugin</a></li>
+                                <li><a href="/jquery-slidex/examples/combining-plugins.html">Combining plugins</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#download">Download</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="page-header">
+                <h1>{{ page.title }}</h1>
+            </div>
+            {{ content }}
+
+            <footer>
+              <p>&copy; Eugene Leonovich</p>
+            </footer>
+        </div>
+
+        <script src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-dropdown.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $('.topbar').dropdown();
+            });
+        </script>
+
+        <!--
         <div class="container">
 
             <header>
@@ -16,12 +60,10 @@
             </header>
 
             <div class="content">
-                <div class="row">
-                    <div class="span12">
                         <h2>{{ page.title }}</h2>
-                        {{ content }}
-                    </div>
-                    <div class="span4">
+                        { { content } }
+
+                    <!- - div class="span4">
                         <h3>Examples</h3>
                         <ul>
                             <li><a href="/jquery-slidex/examples/basic.html">Basic</a></li>
@@ -32,16 +74,15 @@
                             <li><a href="/jquery-slidex/examples/custom-plugin.html">Custom plugin</a></li>
                             <li><a href="/jquery-slidex/examples/combining-plugins.html">Combining plugins</a></li>
                         </ul>
-                    </div>
-                </div>
-          </div>
+                    </div - ->
+            </div>
 
-          <footer>
-            get the source code on GitHub: <a href="https://github.com/rybakit/jquery-slidex">rybakit/jquery-slidex</a>
-          </footer>
+            <footer>
+                get the source code on GitHub: <a href="https://github.com/rybakit/jquery-slidex">rybakit/jquery-slidex</a>
+            </footer>
 
-        </div>
+        </div -->
 
-        <a href="https://github.com/rybakit/jquery-slidex"><img style="position:absolute;top:0;right:0;border:0" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+        <!-- a href="https://github.com/rybakit/jquery-slidex"><img style="position:absolute;top:0;right:0;border:0" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a -->
     </body>
 </html>

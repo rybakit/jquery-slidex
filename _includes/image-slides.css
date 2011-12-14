@@ -1,0 +1,17 @@
+.image-slides {
+    width: 940px;
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+}
+
+.image-slides .slidex-active, .image-slides .slidex-semi-active {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.image-slides .slidex-semi-active {
+    z-index: 1;
+}
