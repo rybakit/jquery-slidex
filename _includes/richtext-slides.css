@@ -1,0 +1,37 @@
+.richtext-slides {
+    position: relative;
+    width: 940px;
+    height: 126px;
+    padding: 0;
+    margin: 0 0 18px 0;
+    overflow: hidden;
+    list-style: none;
+}
+
+.richtext-slides li {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 126px;
+    background: #eee;
+    z-index: 0;
+}
+
+.richtext-slides li.slidex-active {
+    z-index: 2;
+}
+
+.richtext-slides li.slidex-semi-active {
+    z-index: 1;
+}
+
+.img-box img {
+    float: left;
+    margin: 1em 0 1em 1em;
+}
+
+.img-box-text {
+    display: table;
+    margin: 0;
+    padding: 1em;
+}

@@ -3,12 +3,31 @@ title: "Example: Combining plugins"
 layout: default
 ---
 
+<style type="text/css">
+{% include image-slides.css %}
+</style>
+
 {% include image-slides.html %}
+
+<h3>CSS</h3>
+{% highlight css %}
+{% include image-slides.css %}
+{% endhighlight %}
+
+<h3>HTML</h3>
+{% highlight html %}
+{% include image-slides.html %}
+{% endhighlight %}
+
+<h3>JavaScript</h3>
+{% highlight js %}
+{% include examples/basic.js %}
+{% endhighlight %}
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/javascript" src="/jquery-slidex/assets/js/jquery.slidex.js"></script>
 <script type="text/javascript">
-    $(function() {
-        $('.slides').slidex();
-    });
+$(function() {
+{% include examples/basic.js %}
+});
 </script>

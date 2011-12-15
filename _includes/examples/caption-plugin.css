@@ -2,7 +2,8 @@
     position: relative;
 }
 
-.slidex-pagination {
+/*
+.slidex-caption {
     position: absolute;
     bottom: 1em;
     right: 1em;
@@ -13,7 +14,7 @@
     overflow: hidden;
 }
 
-ul.slidex-pagination li {
+ul.slidex-caption li {
     float: left;
     width: .8em;
     height: 1.2em;
@@ -27,6 +28,14 @@ ul.slidex-pagination li {
     opacity: .4;
 }
 
-ul.slidex-pagination li.active, ul.slidex-pagination li:hover {
+ul.slidex-caption li.active, ul.slidex-caption li:hover {
     opacity: .8;
+}
+*/
+
+.slidex-caption {
+    display: none;
+    background: #000;
+    color: #aaa;
+    padding: 5px;
 }

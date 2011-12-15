@@ -1,0 +1,20 @@
+.slides {
+    position: relative;
+}
+
+.slidex-pagination {
+    margin-top: 1em;
+}
+
+.slidex-pagination li {
+    cursor: pointer;
+    opacity: .4;
+}
+
+.slidex-pagination li:hover {
+    opacity: .8;
+}
+
+.slidex-pagination li a {
+    outline: none;
+}
