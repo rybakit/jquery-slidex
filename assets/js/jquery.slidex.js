@@ -9,6 +9,7 @@
         defaults: {
             delay: 5,
             speed: 'slow',
+            filter: null,
             transition: function(from, to) {
                 from.addClass('slidex-semi-active').removeClass('slidex-active');
                 return to.hide().addClass('slidex-active').fadeIn(this.config.speed, function() {
@@ -19,7 +20,7 @@
 
         prototype: {
             init: function() {
-                this.slides = $(this.target).children();
+                this.slides = $(this.target).children(this.config.filter);
                 this.index = $('>.slidex-active', this.target).index();
                 if (-1 == this.index) {
                     $(this.slides[ this.index = 0 ]).addClass('slidex-active');
