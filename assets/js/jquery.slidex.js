@@ -48,12 +48,17 @@
                 });
             },
 
-            play: function() {
+            start: function() {
                 var self = this;
-                if (self.timer) {
-                    clearInterval(self.timer);
-                }
+                self.stop();
                 self.timer = setInterval(function() { self.show(); }, self.config.delay * 1000);
+            },
+
+            stop: function() {
+                if (this.timer) {
+                    clearInterval(this.timer);
+                    this.timer = null;
+                }
             }
         }
     });
@@ -64,7 +69,7 @@
             if ($.isFunction(decorate)) {
                 decorate(slidex);
             }
-            slidex.play();
+            slidex.start();
         });
     }
 
