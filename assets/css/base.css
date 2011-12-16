@@ -17,3 +17,8 @@ h2.title {
 .slides .media-grid a {
     margin-bottom: 0;
 }
+
+.slidex-caption a {
+    color: #bbb;
+    text-decoration: underline;
+}

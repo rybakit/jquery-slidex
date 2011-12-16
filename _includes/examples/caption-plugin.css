@@ -2,40 +2,23 @@
     position: relative;
 }
 
-/*
 .slidex-caption {
     position: absolute;
-    bottom: 1em;
-    right: 1em;
-    height: 1.4em;
+    bottom: 0;
+    left: 0;
     margin: 0;
     padding: 0;
     z-index: 20;
     overflow: hidden;
+    background: #000;
+    background: rgba(0, 0, 0, .3);
 }
 
 ul.slidex-caption li {
-    float: left;
-    width: .8em;
-    height: 1.2em;
-    font-size: 2em;
-    line-height: .7em;
-    margin: 0 0 0 1px;
-    text-indent: .2em;
-    list-style-position: inside;
-    color: #fff;
-    cursor: pointer;
-    opacity: .4;
-}
-
-ul.slidex-caption li.active, ul.slidex-caption li:hover {
-    opacity: .8;
-}
-*/
-
-.slidex-caption {
     display: none;
-    background: #000;
-    color: #aaa;
-    padding: 5px;
+    width: 940px;
+    margin: 0;
+    padding: .5em 1em;
+    list-style: none;
+    color: #fff;
 }
