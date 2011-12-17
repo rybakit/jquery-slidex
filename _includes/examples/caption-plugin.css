@@ -6,6 +6,7 @@
     position: absolute;
     bottom: 0;
     left: 0;
+    width: 100%;
     margin: 0;
     padding: 0;
     z-index: 20;
@@ -16,9 +17,11 @@
 
 ul.slidex-caption li {
     display: none;
-    width: 940px;
     margin: 0;
     padding: .5em 1em;
     list-style: none;
+}
+
+.slidex-caption, .slidex-caption a {
     color: #fff;
 }

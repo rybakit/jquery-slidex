@@ -18,7 +18,10 @@ h2.title {
     margin-bottom: 0;
 }
 
+.slidex-caption li {
+    color: #fff;
+}
+
 .slidex-caption a {
-    color: #bbb;
     text-decoration: underline;
 }
