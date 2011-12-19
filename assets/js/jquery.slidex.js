@@ -51,8 +51,9 @@
 
             start: function() {
                 var self = this;
-                self.stop();
-                self.timer = setInterval(function() { self.show(); }, self.config.delay * 1000);
+                if (!this.timer) {
+                    this.timer = setInterval(function() { self.show(); }, self.config.delay * 1000);
+                }
             },
 
             stop: function() {
