@@ -2,14 +2,15 @@
     ($.slidex.ext = $.slidex.ext || {}).caption = function(slidex, container) {
         container = $(container);
 
-        var items = container.children(), target = $(slidex.target),
+        var items = container.children(),
+            co = container.offset(), to = $(slidex.target).offset(),
             pos = 'bottom', dim = 'height';
 
-        if (container.css('top') == target.css('top')) {
-            if (container.width() >= target.height()) {
+        if (co.top == to.top) {
+            if (container.width() >= container.height()) {
                 pos = 'top';
             } else {
-                pos = container.css('left') == target.css('left') ? 'left' : 'right';
+                pos = co.left == to.left ? 'left' : 'right';
                 dim = 'width';
             }
         }
