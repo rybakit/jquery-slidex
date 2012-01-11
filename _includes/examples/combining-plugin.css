@@ -1,0 +1,36 @@
+.slides {
+    overflow: hidden;
+}
+
+.slidex-caption {
+    position: absolute;
+
+    /* top */
+    top: 0;
+    width: 100%;
+
+    /* right
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 313px;
+    */
+
+    margin: 0;
+    padding: 0;
+    z-index: 20;
+    overflow: hidden;
+    background: #000;
+    background: rgba(0, 0, 0, .3);
+}
+
+ul.slidex-caption li {
+    display: none;
+    margin: 0;
+    padding: .5em 1em;
+    list-style: none;
+}
+
+.slidex-caption, .slidex-caption a {
+    color: #fff;
+}
