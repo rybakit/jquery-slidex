@@ -1,41 +1,34 @@
 ---
-title: "Example: Combining plugins"
+title: "Example: Pagination extension (thumbnails)"
 layout: default
 ---
 
 <style type="text/css">
-{% include image-slides.css %}
-{% include examples/pagination-plugin-thumbnails.css %}
-{% include examples/combining-plugins.css %}
+{% include examples/extensions/pagination/thumbnails/example.css %}
 </style>
 
-{% include examples/combining-plugins.html %}
+{% include examples/extensions/pagination/thumbnails/example.html %}
 
 <h3>CSS</h3>
 {% highlight css %}
-{% include image-slides.css %}
-
-{% include examples/pagination-plugin-thumbnails.css %}
-
-{% include examples/combining-plugins.css %}
+{% include examples/extensions/pagination/thumbnails/example.css %}
 {% endhighlight %}
 
 <h3>HTML</h3>
 {% highlight html %}
-{% include examples/combining-plugins.html %}
+{% include examples/extensions/pagination/thumbnails/example.html %}
 {% endhighlight %}
 
 <h3>JavaScript</h3>
 {% highlight js %}
-{% include examples/combining-plugins.js %}
+{% include examples/extensions/pagination/thumbnails/example.js %}
 {% endhighlight %}
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/javascript" src="/jquery-slidex/assets/js/jquery.slidex.js"></script>
 <script type="text/javascript" src="/jquery-slidex/assets/js/jquery.slidex.pagination.js"></script>
-<script type="text/javascript" src="/jquery-slidex/assets/js/jquery.slidex.caption.js"></script>
 <script type="text/javascript">
 $(function() {
-{% include examples/combining-plugins.js %}
+{% include examples/extensions/pagination/thumbnails/example.js %}
 });
 </script>

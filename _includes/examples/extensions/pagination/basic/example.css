@@ -1,3 +1,5 @@
+{% include examples/image-slides.css %}
+
 .slidex-pagination {
     position: absolute;
     bottom: 1em;

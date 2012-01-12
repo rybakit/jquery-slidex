@@ -1,3 +1,5 @@
+{% include examples/image-slides.css %}
+
 .progress-bar {
     background: #000;
     z-index: 100;

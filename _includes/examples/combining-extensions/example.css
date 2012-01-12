@@ -1,3 +1,7 @@
+{% include examples/image-slides.css %}
+
+{% include examples/extensions/pagination/thumbnails/example.css %}
+
 .slides {
     overflow: hidden;
 }
