@@ -48,7 +48,9 @@
             </footer>
         </div>
 
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script type="text/javascript">
+            window.jQuery || document.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"><\/script>');
+        </script>
         <script src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-dropdown.js"></script>
         <script type="text/javascript">
             $('.topbar').dropdown();
