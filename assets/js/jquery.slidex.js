@@ -10,7 +10,7 @@
             delay: 5,
             speed: 'slow',
             filter: null,
-            transition: function(from, to) {
+            animate: function(from, to) {
                 from.addClass('slidex-semi-active').removeClass('slidex-active');
                 return to.hide().addClass('slidex-active').fadeIn(this.config.speed, function() {
                     from.removeClass('slidex-semi-active');
@@ -41,7 +41,7 @@
 
                 $(self).trigger('before.slidex', [ self.index, index ]);
                 $.when(
-                    self.config.transition.call(self, $(self.slides[self.index]), $(self.slides[index]))
+                    self.config.animate.call(self, $(self.slides[self.index]), $(self.slides[index]))
                 ).done(function() {
                     self.index = index;
                     $(self).trigger('after.slidex');

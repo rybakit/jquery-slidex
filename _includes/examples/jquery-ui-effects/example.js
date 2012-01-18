@@ -1,4 +1,4 @@
-$('.slides').slidex({ transition: function(from, to) {
+$('.slides').slidex({ animate: function(from, to) {
     var effects = [ 'clip', 'drop', 'explode', 'fold', 'puff' ];
 
     to.addClass('slidex-semi-active');

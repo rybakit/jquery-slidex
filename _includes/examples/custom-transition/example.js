@@ -1,4 +1,4 @@
-$('.slides').slidex({ transition: function(from, to) {
+$('.slides').slidex({ animate: function(from, to) {
     from.addClass('slidex-semi-active').removeClass('slidex-active');
     return to.css('top', '-' + to.css('height'))
         .addClass('slidex-active')
