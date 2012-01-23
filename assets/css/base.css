@@ -1,13 +1,55 @@
-body {
-    padding-top: 60px;
-}
-
 pre > code {
     background: none;
 }
 
 h2.title {
     margin: 20px 0;
+}
+
+.topbar {
+    position: relative;
+}
+
+.page-header {
+    padding-top: 20px;
+}
+
+footer {
+    margin: 30px 0 60px 0;
+}
+
+#dropdown-examples {
+    width: 100%;
+    overflow: hidden;
+    background: #333;
+}
+
+#dropdown-examples dl {
+    float: left;
+    width: 225px;
+    padding: 0 15px;
+}
+
+#dropdown-examples dt {
+    color: #eee;
+    font-weight: bold;
+    margin-top: 1em;
+}
+
+#dropdown-examples dd {
+    padding: 0 0 0 10px;
+    margin: 0;
+    font-size: 11px;
+}
+
+#dropdown-examples a {
+    display: block;
+    padding: 2px;
+    color: #ccc;
+}
+
+#dropdown-examples dt a {
+    color: #eee;
 }
 
 .slides {
@@ -24,8 +66,4 @@ h2.title {
 
 .slidex-caption a {
     text-decoration: underline;
-}
-
-footer {
-    margin: 30px 0 60px 0;
 }

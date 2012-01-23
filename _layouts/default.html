@@ -16,21 +16,7 @@
                     <a class="brand" href="/jquery-slidex/">jQuery Slidex Plugin</a>
                     <ul class="nav">
                         <li><a href="/jquery-slidex/">Home</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" href="/jquery-slidex/examples/">Examples</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/jquery-slidex/examples/index.html">Basic</a></li>
-                                <li><a href="/jquery-slidex/examples/multiple-instances.html">Multiple instances</a></li>
-                                <li><a href="/jquery-slidex/examples/custom-transition.html">Custom transition</a></li>
-                                <li><a href="/jquery-slidex/examples/jquery-ui-effects.html">jQuery UI Effects</a></li>
-                                <li><a href="/jquery-slidex/examples/extensions/pagination/index.html">Pagination extension</a></li>
-                                <li><a href="/jquery-slidex/examples/extensions/pagination/thumbnails.html">Pagination extension (thumbnails)</a></li>
-                                <li><a href="/jquery-slidex/examples/extensions/caption/index.html">Caption extension</a></li>
-                                <li><a href="/jquery-slidex/examples/extensions/custom/index.html">Custom extension (progress-bar)</a></li>
-                                <li><a href="/jquery-slidex/examples/extensions/custom/pause-on-hover.html">Custom extension (pause-on-hover)</a></li>
-                                <li><a href="/jquery-slidex/examples/combining-extensions.html">Combining extensions</a></li>
-                            </ul>
-                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" href="/jquery-slidex/examples/">Examples</a></li>
                         <li><a href="/jquery-slidex/download.html">Download</a></li>
                     </ul>
                 </div>
@@ -38,6 +24,29 @@
         </div>
 
         <div class="container">
+
+            <div id="dropdown-examples" class="dropdown-menu-big" style="display: none">
+                <dl>
+                    <dt>Getting Started</dt>
+                    <dd><a href="/jquery-slidex/examples/index.html">Minimal setup</a></dd>
+                    <dd><a href="/jquery-slidex/examples/multiple-instances.html">Multiple instances</a></dd>
+                </dl>
+                <dl>
+                    <dt>Transitions</dt>
+                    <dd><a href="/jquery-slidex/examples/transitions/custom/easing.html">Easing</a></dd>
+                    <dd><a href="/jquery-slidex/examples/transitions/custom/jquery-ui-effects.html">jQuery UI Effects</a></dd>
+                </dl>
+                <dl>
+                    <dt>Extensions</dt>
+                    <dd><a href="/jquery-slidex/examples/extensions/pagination/index.html">Pagination extension</a></dd>
+                    <dd><a href="/jquery-slidex/examples/extensions/pagination/thumbnails.html">Pagination extension (thumbnails)</a></dd>
+                    <dd><a href="/jquery-slidex/examples/extensions/caption/index.html">Caption extension</a></dd>
+                    <dd><a href="/jquery-slidex/examples/extensions/custom/index.html">Custom extension (progress-bar)</a></dd>
+                    <dd><a href="/jquery-slidex/examples/extensions/custom/pause-on-hover.html">Custom extension (pause-on-hover)</a></dd>
+                    <dd><a href="/jquery-slidex/examples/combining-extensions.html">Combining extensions</a></dd>
+                </dl>
+            </div>
+
             <div class="page-header">
                 <h1>{{ page.title }} <small>{{ page.subtitle }}</small></h1>
             </div>
@@ -54,6 +63,13 @@
         <script src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-dropdown.js"></script>
         <script type="text/javascript">
             $('.topbar').dropdown();
+            $('html').click(function() {
+                $('#dropdown-examples').slideUp();
+            });
+            $('.dropdown-toggle').click(function() {
+                $('#dropdown-examples').slideToggle();
+                return false;
+            });
         </script>
 
         <!-- a href="https://github.com/rybakit/jquery-slidex"><img style="position:absolute;top:0;right:0;border:0" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a -->
