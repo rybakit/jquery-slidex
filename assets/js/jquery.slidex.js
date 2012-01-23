@@ -1,4 +1,6 @@
 (function($) {
+    "use strict";
+
     $.slidex = function(target, config) {
         this.config = $.extend($.slidex.defaults, config);
         this.target = target;
@@ -17,26 +19,28 @@
                 });
             }
         },
+        _locked: false,
+        _timer: null,
 
         prototype: {
             init: function() {
                 this.slides = $(this.target).children(this.config.filter);
                 this.index = $('>.slidex-active', this.target).index();
-                if (-1 == this.index) {
-                    $(this.slides[ this.index = 0 ]).addClass('slidex-active');
+                if (-1 === this.index) {
+                    $(this.slides[this.index = 0]).addClass('slidex-active');
                 }
             },
 
             show: function(index) {
                 var self = this;
 
-                if (self.locked) {
+                if (self._locked) {
                     return false;
                 }
-                self.locked = true;
+                self._locked = true;
 
                 if ('undefined' === typeof index) {
-                    index = self.index == self.slides.length - 1 ? 0 : self.index + 1;
+                    index = self.index === self.slides.length - 1 ? 0 : self.index + 1;
                 }
 
                 $(self).trigger('before.slidex', [ self.index, index ]);
@@ -45,21 +49,21 @@
                 ).done(function() {
                     self.index = index;
                     $(self).trigger('after.slidex');
-                    self.locked = false;
+                    self._locked = false;
                 });
             },
 
             start: function() {
                 var self = this;
-                if (!this.timer) {
-                    this.timer = setInterval(function() { self.show(); }, self.config.delay * 1000);
+                if (!this._timer) {
+                    this._timer = setInterval(function() { self.show(); }, self.config.delay * 1000);
                 }
             },
 
             stop: function() {
-                if (this.timer) {
-                    clearInterval(this.timer);
-                    this.timer = null;
+                if (this._timer) {
+                    clearInterval(this._timer);
+                    this._timer = null;
                 }
             }
         }
@@ -73,6 +77,6 @@
             }
             slidex.start();
         });
-    }
+    };
 
-}(jQuery));
+}(window.jQuery));

@@ -1,4 +1,6 @@
 (function($) {
+    "use strict";
+
     ($.slidex.ext = $.slidex.ext || {}).caption = function(slidex, container) {
         container = $(container);
 
@@ -6,11 +8,11 @@
             co = container.offset(), to = $(slidex.target).offset(),
             pos = 'bottom', dim = 'height';
 
-        if (co.top == to.top) {
+        if (co.top === to.top) {
             if (container.width() >= container.height()) {
                 pos = 'top';
             } else {
-                pos = co.left == to.left ? 'left' : 'right';
+                pos = co.left === to.left ? 'left' : 'right';
                 dim = 'width';
             }
         }
@@ -28,4 +30,4 @@
             });
         });
     };
-}(jQuery));
+}(window.jQuery));

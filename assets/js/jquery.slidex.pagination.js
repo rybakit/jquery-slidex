@@ -1,4 +1,6 @@
 (function($) {
+    "use strict";
+
     ($.slidex.ext = $.slidex.ext || {}).pagination = function(slidex, container) {
         var pages = $(container).children().click(function(e) {
             e.preventDefault();
@@ -16,4 +18,4 @@
             $(pages[newIndex]).animate({ opacity: .8 }, slidex.config.speed);
         });
     };
-}(jQuery));
+}(window.jQuery));
