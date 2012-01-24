@@ -43,7 +43,7 @@
                     index = self.index === self.slides.length - 1 ? 0 : self.index + 1;
                 }
 
-                $(self).trigger('before.slidex', [ self.index, index ]);
+                $(self).trigger('before.slidex', [self.index, index]);
                 $.when(
                     self.config.animate.call(self, $(self.slides[self.index]), $(self.slides[index]))
                 ).done(function() {
