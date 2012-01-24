@@ -1,0 +1,36 @@
+---
+title: "Position"
+subtitle: "/ Caption / Extensions / Examples"
+layout: default
+---
+
+<style type="text/css">
+{% include examples/extensions/caption/position/example.css %}
+</style>
+
+{% include examples/extensions/caption/position/example.html %}
+
+<h3>CSS</h3>
+{% highlight css %}
+{% include examples/extensions/caption/position/example.css %}
+{% endhighlight %}
+
+<h3>HTML</h3>
+{% highlight html %}
+{% include examples/extensions/caption/position/example.html %}
+{% endhighlight %}
+
+<h3>JavaScript</h3>
+{% highlight js %}
+{% include examples/extensions/caption/position/example.js %}
+{% endhighlight %}
+
+{% include scripts/jquery.html %}
+{% include scripts/slidex.html %}
+{% include scripts/slidex_caption.html %}
+
+<script type="text/javascript">
+$(function() {
+{% include examples/extensions/caption/position/example.js %}
+});
+</script>
