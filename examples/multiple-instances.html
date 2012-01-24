@@ -25,8 +25,9 @@ layout: default
 {% include examples/multiple-instances/example.js %}
 {% endhighlight %}
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script type="text/javascript" src="/jquery-slidex/assets/js/jquery.slidex.js"></script>
+{% include scripts/jquery.html %}
+{% include scripts/slidex.html %}
+
 <script type="text/javascript">
 $(function() {
 {% include examples/multiple-instances/example.js %}

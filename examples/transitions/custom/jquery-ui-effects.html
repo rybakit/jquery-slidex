@@ -25,9 +25,10 @@ layout: default
 {% include examples/transitions/custom/jquery-ui-effects/example.js %}
 {% endhighlight %}
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script type="text/javascript" src="/jquery-slidex/assets/js/jquery.slidex.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+{% include scripts/jquery.html %}
+{% include scripts/jquery_ui.html %}
+{% include scripts/slidex.html %}
+
 <script type="text/javascript">
 $(function() {
 {% include examples/transitions/custom/jquery-ui-effects/example.js %}
