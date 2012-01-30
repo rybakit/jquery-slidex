@@ -57,6 +57,7 @@
                 var self = this;
                 if (!this._timer) {
                     this._timer = setInterval(function() { self.show(); }, self.config.delay * 1000);
+                    $(this).trigger('start.slidex');
                 }
             },
 
@@ -64,6 +65,7 @@
                 if (this._timer) {
                     clearInterval(this._timer);
                     this._timer = null;
+                    $(this).trigger('stop.slidex');
                 }
             }
         }
