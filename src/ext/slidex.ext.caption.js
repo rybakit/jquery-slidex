@@ -4,7 +4,7 @@
     ($.slidex.ext = $.slidex.ext || {}).caption = function(slidex, container) {
         var $container = $(container),
             items = $container.children(),
-            co = $container.offset(), to = slidex.$element.offset(),
+            co = $container.offset(), to = slidex.$target.offset(),
             pos = 'bottom', dim = 'height';
 
         if (co.top === to.top) {
@@ -18,7 +18,7 @@
 
         $(items[slidex.index]).show();
 
-        slidex.$element.bind('before.slidex', function(e, oldIndex, newIndex) {
+        slidex.$target.bind('before.slidex', function(e, oldIndex, newIndex) {
             var props = { opacity: 'toggle' };
             props[pos] = '-' + $container.css(dim);
             $container.animate(props, 'slow', function() {

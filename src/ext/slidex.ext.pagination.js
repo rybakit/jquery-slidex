@@ -13,7 +13,7 @@
 
         $(pages[slidex.index]).css('opacity', .8);
 
-        slidex.$element.bind('before.slidex', function(e, oldIndex, newIndex) {
+        slidex.$target.bind('before.slidex', function(e, oldIndex, newIndex) {
             $(pages[oldIndex]).animate({ opacity: .4 }, slidex.options.speed);
             $(pages[newIndex]).animate({ opacity: .8 }, slidex.options.speed);
         });
