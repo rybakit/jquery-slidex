@@ -1,0 +1,3 @@
+[submodule "vendor/jquery-slidex"]
+	path = vendor/jquery-slidex
+	url = git@github.com:rybakit/jquery-slidex.git
