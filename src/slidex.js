@@ -1,9 +1,9 @@
 (function($) {
     "use strict";
 
-    $.slidex = function(target, config) {
-        this.config = $.extend($.slidex.defaults, config);
-        this.target = target;
+    $.slidex = function(element, options) {
+        this.$element = $(element);
+        this.options = $.extend({}, $.slidex.defaults, options);
         this.init();
     };
 
@@ -12,10 +12,10 @@
             delay: 5,
             speed: 'slow',
             filter: null,
-            animate: function(from, to) {
-                from.addClass('slidex-semi-active').removeClass('slidex-active');
-                return to.hide().addClass('slidex-active').fadeIn(this.config.speed, function() {
-                    from.removeClass('slidex-semi-active');
+            animate: function($from, $to) {
+                $from.addClass('slidex-semi-active').removeClass('slidex-active');
+                return $to.hide().addClass('slidex-active').fadeIn(this.options.speed, function() {
+                    $from.removeClass('slidex-semi-active');
                 });
             }
         },
@@ -24,8 +24,8 @@
 
         prototype: {
             init: function() {
-                this.slides = $(this.target).children(this.config.filter);
-                this.index = $('>.slidex-active', this.target).index();
+                this.slides = this.$element.children(this.options.filter);
+                this.index = $('>.slidex-active', this.$element).index();
                 if (-1 === this.index) {
                     $(this.slides[this.index = 0]).addClass('slidex-active');
                 }
@@ -43,12 +43,12 @@
                     index = self.index === self.slides.length - 1 ? 0 : self.index + 1;
                 }
 
-                $(self).trigger('before.slidex', [self.index, index]);
+                self.$element.trigger('before.slidex', [self.index, index]);
                 $.when(
-                    self.config.animate.call(self, $(self.slides[self.index]), $(self.slides[index]))
+                    self.options.animate.call(self, $(self.slides[self.index]), $(self.slides[index]))
                 ).done(function() {
                     self.index = index;
-                    $(self).trigger('after.slidex');
+                    self.$element.trigger('after.slidex');
                     self._locked = false;
                 });
             },
@@ -56,8 +56,8 @@
             start: function() {
                 var self = this;
                 if (!this._timer) {
-                    this._timer = setInterval(function() { self.show(); }, self.config.delay * 1000);
-                    $(this).trigger('start.slidex');
+                    this._timer = setInterval(function() { self.show(); }, self.options.delay * 1000);
+                    this.$element.trigger('start.slidex');
                 }
             },
 
@@ -65,15 +65,15 @@
                 if (this._timer) {
                     clearInterval(this._timer);
                     this._timer = null;
-                    $(this).trigger('stop.slidex');
+                    this.$element.trigger('stop.slidex');
                 }
             }
         }
     });
 
-    $.fn.slidex = function(config, decorate) {
+    $.fn.slidex = function(options, decorate) {
         return this.each(function() {
-            var slidex = new $.slidex(this, config);
+            var slidex = new $.slidex(this, options);
             if ($.isFunction(decorate)) {
                 decorate(slidex);
             }
