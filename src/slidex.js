@@ -25,7 +25,7 @@
         prototype: {
             init: function() {
                 this.slides = this.$target.children(this.options.filter);
-                this.index = $('>.slidex-active', this.$target).index();
+                this.index = $(this.slides).filter('.slidex-active').index();
                 if (-1 === this.index) {
                     $(this.slides[this.index = 0]).addClass('slidex-active');
                 }
