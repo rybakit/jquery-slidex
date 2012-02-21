@@ -13,9 +13,9 @@
 
         $(pages[slidex.index]).css('opacity', .8);
 
-        $(slidex).bind('before.slidex', function(e, oldIndex, newIndex) {
-            $(pages[oldIndex]).animate({ opacity: .4 }, slidex.config.speed);
-            $(pages[newIndex]).animate({ opacity: .8 }, slidex.config.speed);
+        slidex.$target.bind('before', function(e, oldIndex, newIndex) {
+            $(pages[oldIndex]).animate({ opacity: .4 }, slidex.options.speed);
+            $(pages[newIndex]).animate({ opacity: .8 }, slidex.options.speed);
         });
     };
 }(window.jQuery));

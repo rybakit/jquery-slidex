@@ -1,83 +1,87 @@
 (function($) {
     "use strict";
 
-    $.slidex = function(target, config) {
-        this.config = $.extend($.slidex.defaults, config);
-        this.target = target;
+    $.slidex = function(target, options) {
+        this.$target = $(target);
+        this.options = $.extend({}, $.slidex.defaults, options);
         this.init();
     };
 
     $.extend($.slidex, {
         defaults: {
-            delay: 5,
             speed: 'slow',
             filter: null,
-            animate: function(from, to) {
-                from.addClass('slidex-semi-active').removeClass('slidex-active');
-                return to.hide().addClass('slidex-active').fadeIn(this.config.speed, function() {
-                    from.removeClass('slidex-semi-active');
+            animate: function($from, $to) {
+                $from.addClass('slidex-semi-active').removeClass('slidex-active');
+                return $to.hide().addClass('slidex-active').fadeIn(this.options.speed, function() {
+                    $from.removeClass('slidex-semi-active');
                 });
             }
         },
-        _locked: false,
-        _timer: null,
 
         prototype: {
             init: function() {
-                this.slides = $(this.target).children(this.config.filter);
-                this.index = $('>.slidex-active', this.target).index();
+                this.slides = this.$target.children(this.options.filter);
+                this.index = $(this.slides).filter('.slidex-active').index();
                 if (-1 === this.index) {
                     $(this.slides[this.index = 0]).addClass('slidex-active');
                 }
             },
 
             show: function(index) {
-                var self = this;
+                if ('undefined' === typeof index) {
+                    index = this.index === this.slides.length - 1 ? 0 : this.index + 1;
+                }
 
-                if (self._locked) {
+                var e = $.Event('before'), self = this;
+                self.$target.trigger(e, [this.index, index]);
+
+                if (false === e.result) {
                     return false;
                 }
-                self._locked = true;
 
-                if ('undefined' === typeof index) {
-                    index = self.index === self.slides.length - 1 ? 0 : self.index + 1;
-                }
-
-                $(self).trigger('before.slidex', [self.index, index]);
                 $.when(
-                    self.config.animate.call(self, $(self.slides[self.index]), $(self.slides[index]))
+                    this.options.animate.call(this, $(this.slides[this.index]), $(this.slides[index]))
                 ).done(function() {
                     self.index = index;
-                    $(self).trigger('after.slidex');
-                    self._locked = false;
+                    self.$target.trigger('after');
                 });
-            },
-
-            start: function() {
-                var self = this;
-                if (!this._timer) {
-                    this._timer = setInterval(function() { self.show(); }, self.config.delay * 1000);
-                    $(this).trigger('start.slidex');
-                }
-            },
-
-            stop: function() {
-                if (this._timer) {
-                    clearInterval(this._timer);
-                    this._timer = null;
-                    $(this).trigger('stop.slidex');
-                }
             }
+
+            /*,
+            onshow: function(fnBefore, fnAfter) {
+                this.$target.bind({ 'before': fnBefore, 'after': fnAfter });
+            }
+            */
         }
     });
 
-    $.fn.slidex = function(config, decorate) {
+    $.fn.slidex = function(options, decorate) {
         return this.each(function() {
-            var slidex = new $.slidex(this, config);
-            if ($.isFunction(decorate)) {
-                decorate(slidex);
+            var $this = $(this), slidex = $this.data('slidex'), locked;
+            if (!slidex) {
+                slidex = new $.slidex(this, options);
+                $this.bind({
+                    'before': function(e) {
+                        if (locked) {
+                            e.stopPropagation();
+                            return false;
+                        }
+                        locked = true;
+                    },
+                    'after': function() {
+                        locked = false;
+                    },
+                    'click': function() {
+                        slidex.show();
+                    }
+                });
+
+                if ($.isFunction(decorate)) {
+                    decorate(slidex);
+                }
+                $(this).data('slidex', slidex);
             }
-            slidex.start();
         });
     };
 
