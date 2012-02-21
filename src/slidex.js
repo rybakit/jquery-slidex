@@ -34,7 +34,7 @@
                 }
 
                 var e = $.Event('before'), self = this;
-                self.$target.trigger(e, [this.index, index]);
+                this.$target.trigger(e, [this.index, index]);
 
                 if (false === e.result) {
                     return false;
