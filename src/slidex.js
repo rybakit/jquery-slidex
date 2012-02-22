@@ -28,22 +28,22 @@
                 }
             },
 
-            show: function(index) {
-                if ('undefined' === typeof index) {
-                    index = this.index === this.slides.length - 1 ? 0 : this.index + 1;
+            show: function(toIndex) {
+                if ('undefined' === typeof toIndex) {
+                    toIndex = this.index === this.slides.length - 1 ? 0 : this.index + 1;
                 }
 
                 var e = $.Event('before'), self = this;
-                this.$target.trigger(e, [this.index, index]);
+                this.$target.trigger(e, toIndex);
 
                 if (false === e.result) {
                     return false;
                 }
 
                 $.when(
-                    this.options.animate.call(this, $(this.slides[this.index]), $(this.slides[index]))
+                    this.options.animate.call(this, $(this.slides[this.index]), $(this.slides[toIndex]))
                 ).done(function() {
-                    self.index = index;
+                    self.index = toIndex;
                     self.$target.trigger('after');
                 });
             }

@@ -18,12 +18,12 @@
 
         $(items[slidex.index]).show();
 
-        slidex.$target.bind('before', function(e, oldIndex, newIndex) {
+        slidex.$target.bind('before', function(e, toIndex) {
             var props = { opacity: 'toggle' };
             props[pos] = '-' + $container.css(dim);
             $container.animate(props, 'slow', function() {
-                $(items[oldIndex]).hide();
-                $(items[newIndex]).show();
+                $(items[slidex.index]).hide();
+                $(items[toIndex]).show();
                 props[pos] = 0;
                 $container.animate(props, 'slow');
             });
