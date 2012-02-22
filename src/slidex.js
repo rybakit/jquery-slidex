@@ -80,7 +80,7 @@
                 if ($.isFunction(decorate)) {
                     decorate(slidex);
                 }
-                $(this).data('slidex', slidex);
+                $this.data('slidex', slidex);
             }
         });
     };
