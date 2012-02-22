@@ -13,8 +13,8 @@
     opacity: .4;
 }
 
-.slidex-pagination li:hover {
-    opacity: .8;
+ul.slidex-pagination li.active, ul.slidex-pagination li:hover {
+    opacity: 1;
 }
 
 .slidex-pagination li a {
