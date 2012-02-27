@@ -28,16 +28,20 @@
                 }
             },
 
+            nextIndex: function() {
+                return this.index === this.slides.length - 1 ? 0 : this.index + 1;
+            },
+
             show: function(toIndex) {
                 if ('undefined' === typeof toIndex) {
-                    toIndex = this.index === this.slides.length - 1 ? 0 : this.index + 1;
+                    toIndex = this.nextIndex();
                 }
 
                 var e = $.Event('before'), self = this;
                 this.$target.trigger(e, toIndex);
 
                 if (false === e.result) {
-                    return false;
+                    return;
                 }
 
                 $.when(
@@ -47,34 +51,35 @@
                     self.$target.trigger('after');
                 });
             }
-
-            /*,
-            onshow: function(fnBefore, fnAfter) {
-                this.$target.bind({ 'before': fnBefore, 'after': fnAfter });
-            }
-            */
         }
     });
 
+    var lockable = function(slidex) {
+        var locked;
+
+        slidex.$target.on({
+            'before': function(e, toIndex) {
+                if (locked || slidex.index === toIndex) {
+                    e.stopImmediatePropagation();
+                    return false;
+                }
+                locked = true;
+            },
+            'after': function() {
+                locked = false;
+            }
+        });
+    };
+
     $.fn.slidex = function(options, decorate) {
         return this.each(function() {
-            var $this = $(this), slidex = $this.data('slidex'), locked;
+            var $this = $(this), slidex = $this.data('slidex');
             if (!slidex) {
                 slidex = new $.slidex(this, options);
-                $this.bind({
-                    'before': function(e) {
-                        if (locked) {
-                            e.stopPropagation();
-                            return false;
-                        }
-                        locked = true;
-                    },
-                    'after': function() {
-                        locked = false;
-                    },
-                    'click': function() {
-                        slidex.show();
-                    }
+                lockable(slidex);
+
+                $this.click(function() {
+                    slidex.show();
                 });
 
                 if ($.isFunction(decorate)) {

@@ -9,17 +9,23 @@
 
         var timer;
 
-        slidex.$target.bind({
-            'before stop.autoplay': function() {
+        slidex.$target.on({
+            'stop.autoplay': function() {
                 if (timer) {
                     clearTimeout(timer);
                     timer = null;
                 }
             },
-            'after start.autoplay': function() {
+            'start.autoplay': function() {
                 if (!timer) {
                     timer = setTimeout(function() { slidex.show(); }, interval * 1000);
                 }
+            },
+            'before': function() {
+                slidex.$target.trigger('stop.autoplay');
+            },
+            'after': function() {
+                slidex.$target.trigger('start.autoplay');
             }
         })
 
