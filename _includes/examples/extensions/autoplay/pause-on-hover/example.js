@@ -1,4 +1,4 @@
-$('.image-slides').slidex(null, function(slidex) {
+$('.image-slides').slidex(function(slidex) {
     slidex.$target.hover(
         function() {
             slidex.$target.trigger('stop.autoplay');

@@ -1,3 +1,3 @@
-$('.slides').slidex(null, function (slidex) {
+$('.slides').slidex(function (slidex) {
     $.slidex.ext.autoplay(slidex, 2);
 });

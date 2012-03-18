@@ -1,8 +1,8 @@
-$('.image-slides').slidex(null, function(slidex) {
+$('.image-slides').slidex(function(slidex) {
 
     var bar = $('.slides .progress-bar p'), interval = 5;
 
-    slidex.$target.bind({
+    slidex.$target.on({
         'stop.autoplay': function() {
             bar.stop(true, true);
         },
@@ -10,6 +10,8 @@ $('.image-slides').slidex(null, function(slidex) {
             bar.animate({ width: '100%' }, interval * 1000, function() { bar.width(0); });
         }
     });
+
+    //slidex.$target.trigger('start.autoplay');
 
     /*
     slidex.$target.hover(
