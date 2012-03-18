@@ -71,20 +71,26 @@
         });
     };
 
-    $.fn.slidex = function(options, decorate) {
+    $.fn.slidex = function(options, fn) {
         return this.each(function() {
             var $this = $(this), slidex = $this.data('slidex');
             if (!slidex) {
+                if ($.isFunction(options)) {
+                    fn = options;
+                    options = {};
+                }
+
                 slidex = new $.slidex(this, options);
                 lockable(slidex);
+
+                if ($.isFunction(fn)) {
+                    fn(slidex);
+                }
 
                 $this.click(function() {
                     slidex.show();
                 });
 
-                if ($.isFunction(decorate)) {
-                    decorate(slidex);
-                }
                 $this.data('slidex', slidex);
             }
         });
