@@ -1,0 +1,1 @@
+$('.slides').slidex($.slidex.ext.carousel);
