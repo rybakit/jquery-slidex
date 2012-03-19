@@ -8,7 +8,7 @@
 
         $container.on('click', pages[0].tagName, function(e) {
             e.preventDefault();
-            console.log('pagination click on index: ' + $(this).index());
+            //console.log('pagination click on index: ' + $(this).index());
             slidex.show($(this).index());
             return false;
         });
@@ -17,7 +17,7 @@
         $(pages[slidex.index]).addClass(cls);
 
         slidex.$target.on('before', function(e, toIndex) {
-            console.log('pagination before: ' + toIndex);
+            //console.log('pagination before: ' + toIndex);
             pages.removeClass(cls);
             $(pages[toIndex]).addClass(cls);
         });

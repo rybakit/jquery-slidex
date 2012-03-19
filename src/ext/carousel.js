@@ -1,35 +1,35 @@
 (function($) {
     "use strict";
 
-    ($.slidex.ext = $.slidex.ext || {}).autoplay = function(slidex, interval) {
+    ($.slidex.ext = $.slidex.ext || {}).carousel = function(slidex, interval) {
 
         if ('undefined' === typeof interval) {
             interval = 5;
         }
 
-        var timer;
+        var timer, $target = slidex.$target;
 
-        slidex.$target.on({
-            'stop.autoplay': function() {
+        $target.on({
+            'stop.carousel': function() {
                 if (timer) {
                     clearTimeout(timer);
                     timer = null;
                 }
             },
-            'start.autoplay': function() {
+            'start.carousel': function() {
                 if (!timer) {
                     timer = setTimeout(function() { slidex.show(); }, interval * 1000);
                 }
             },
             'before': function() {
-                slidex.$target.trigger('stop.autoplay');
+                $target.trigger('stop.carousel');
             },
             'after': function() {
-                slidex.$target.trigger('start.autoplay');
+                $target.trigger('start.carousel');
             }
-        })
+        });
 
         // autostart
-        slidex.$target.trigger('start.autoplay');
+        $target.trigger('start.carousel');
     };
 }(window.jQuery));
