@@ -22,7 +22,7 @@
             var props = { opacity: 'toggle' };
             props[pos] = '-' + $container.css(dim);
             $container.animate(props, 'slow', function() {
-                $(items[slidex.index]).hide();
+                $(items).hide();
                 $(items[toIndex]).show();
                 props[pos] = 0;
                 $container.animate(props, 'slow');
